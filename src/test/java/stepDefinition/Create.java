@@ -5,25 +5,38 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.java.Before;
 import cucumber.api.java.After;
-import org.openqa.selenium.WebDriver;
+import driver.Framework;
+import webpage.HomePage;
 import webpage.LoginPage;
 
 public class Create {
+
+    String adminUsername = "Luke";
+    String adminPassword = "Skywalker";
+
+    public Framework framework;
     public LoginPage loginPage;
+    public HomePage homePage;
 
     @Before()
     public void setup() {
-        loginPage = new LoginPage();
+        framework = new Framework();
+        loginPage = new LoginPage(framework.getDriver());
+        homePage = new HomePage(framework.getDriver());
     }
 
 	@Given("^I am logged in as Luke$")
 	public void i_am_logged_in_as_luke() throws Throwable {
-        System.out.println("in log in");
+        this.loginPage.formDisplay();
+        this.loginPage.enterUsername(this.adminUsername);
+        this.loginPage.enterPassword(this.adminPassword);
+        this.loginPage.clickLogin();
 	}
 
 	@Given("^I am on the landing page$")
 	public void i_am_on_the_landing_page() throws Throwable {
         System.out.println("in landing page");
+        this.homePage.employeeListDisplay();
 	}
 
 	@When("^I click the Create button$")
@@ -73,6 +86,6 @@ public class Create {
 
 	@After
 	public void teardown() {
-        this.loginPage.closeDriver();
+        this.framework.closeDriver();
 	}
 }

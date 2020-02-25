@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class ChromeDriverShim implements Driver {
+public class ChromeDriverShim implements DriverInterface {
 
     final private String defaultDriverBinary = "./bin/darwin/chromedriver";
 	private static WebDriver driver;

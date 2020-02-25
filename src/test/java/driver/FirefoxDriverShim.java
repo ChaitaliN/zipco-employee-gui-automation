@@ -5,7 +5,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class FirefoxDriverShim implements Driver {
+public class FirefoxDriverShim implements DriverInterface {
 
     final private String defaultDriverBinary = "./bin/darwin/geckodriver";
 	private static WebDriver driver;

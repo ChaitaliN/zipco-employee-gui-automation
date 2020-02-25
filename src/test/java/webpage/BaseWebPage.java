@@ -46,6 +46,10 @@ public class BaseWebPage {
         return this.driver.get();
     }
 
+    public void closeDriver() {
+        this.driver.close();
+    }
+
     public Properties getProperties() {
         return this.prop;
     }

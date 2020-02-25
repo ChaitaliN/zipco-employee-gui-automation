@@ -11,7 +11,7 @@ public class BaseWebPage {
     }
 
 	public void waitLoop(WebElement element) throws Exception {
-		for(int second = 0; second<60;second++) {
+		for(int second = 0; second < 60; second++) {
 				Thread.sleep(1000);
 				if(element.isDisplayed()) {
 					break;

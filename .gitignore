@@ -1,6 +1,6 @@
 # eclipse ignores
 .metadata
-bin/
+# bin/
 tmp/
 *.tmp
 *.bak

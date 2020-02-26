@@ -1,23 +1,24 @@
 package webpage;
 
-import driver.DriverInterface;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.Assert.assertEquals;
 
-public class CreatePage extends BaseWebPage {
+public class CreatePage {
 
 	public static JavascriptExecutor js;
-	public DriverInterface driver;
+	public WebDriver driver;
 
-	public CreatePage(DriverInterface driver) {
+	public CreatePage(WebDriver driver) {
         this.driver = driver;
-        this.setInitElement(this.driver);
+		PageFactory.initElements(this.driver, this);
 	}
 
 	@FindBy(name="employeeForm")
@@ -72,10 +73,10 @@ public class CreatePage extends BaseWebPage {
 
 	public void acceptAlert() {
 		try {
-	        WebDriverWait wait = new WebDriverWait(this.driver.get(), 2);
+	        WebDriverWait wait = new WebDriverWait(this.driver, 2);
 	        if(wait.until(ExpectedConditions.alertIsPresent()) != null) {
 		        wait.until(ExpectedConditions.alertIsPresent());
-		        Alert alert = this.driver.get().switchTo().alert();
+		        Alert alert = this.driver.switchTo().alert();
 		        alert.accept();
                 }
             } catch (Exception e) {
@@ -85,25 +86,25 @@ public class CreatePage extends BaseWebPage {
 
     // Validation methods
 	public void assertFirstName(String firstName){
-		js = (JavascriptExecutor) this.driver.get();
+		js = (JavascriptExecutor) this.driver;
 		String actualFirstName = js.executeScript("return document.getElementsByTagName('input')[0].value").toString();
 		assertEquals(firstName, actualFirstName);
 	}
 
 	public void assertLastName(String lastName){
-		js = (JavascriptExecutor) this.driver.get();
+		js = (JavascriptExecutor) this.driver;
 		String actualLastName = js.executeScript("return document.getElementsByTagName('input')[1].value").toString();
 		assertEquals(lastName, actualLastName);
 	}
 
 	public void assertStartDate(String startDate){
-		js = (JavascriptExecutor) this.driver.get();
+		js = (JavascriptExecutor) this.driver;
 		String actualDate = js.executeScript("return document.getElementsByTagName('input')[2].value").toString();
 		assertEquals(startDate, actualDate);
 	}
 
 	public void assertEmail(String email){
-		js = (JavascriptExecutor) this.driver.get();
+		js = (JavascriptExecutor) this.driver;
 		String actualEmail = js.executeScript("return document.getElementsByTagName('input')[3].value").toString();
 		assertEquals(email, actualEmail);
 	}

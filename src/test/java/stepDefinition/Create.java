@@ -1,35 +1,37 @@
 package stepDefinition;
 
+import cucumber.api.Scenario;
 import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import cucumber.api.java.Before;
 import cucumber.api.java.After;
-import driver.Framework;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import driver.Driver;
 import webpage.CreatePage;
 import webpage.HomePage;
 import webpage.LoginPage;
 
-public class Create {
+public class Create extends Driver {
 
     String adminUsername = "Luke";
     String adminPassword = "Skywalker";
+    String firstName;
+    String lastName;
 
-    public Framework framework;
     public LoginPage loginPage;
     public HomePage homePage;
     public CreatePage createPage;
 
     @Before()
     public void setup() {
-        framework = new Framework();
-        loginPage = new LoginPage(framework.getDriver());
-        homePage = new HomePage(framework.getDriver());
-        createPage = new CreatePage(framework.getDriver());
+        this.navigateToUrl();
+        this.loginPage = new LoginPage(this.getDriver());
+        this.homePage = new HomePage(this.getDriver());
+        this.createPage = new CreatePage(this.getDriver());
     }
 
-	@Given("^I am logged in as Luke$")
-	public void i_am_logged_in_as_luke() throws Throwable {
+	@Given("^I am logged in as Luke to create new employee$")
+	public void i_am_logged_in_as_luke_to_create_new_employee() throws Throwable {
         this.loginPage.formDisplay();
         this.loginPage.enterUsername(this.adminUsername);
         this.loginPage.enterPassword(this.adminPassword);
@@ -48,11 +50,13 @@ public class Create {
 
     @When("^I enter employee firstname \"([^\"]*)\"$")
     public void i_enter_employee_firstname(String firstName) throws Throwable {
+        this.firstName = firstName;
         this.createPage.enterFirstName(firstName);
     }
 
     @When("^I enter employee lastname \"([^\"]*)\"$")
     public void i_enter_employee_lastname(String lastName) throws Throwable {
+        this.lastName = lastName;
         this.createPage.enterLastName(lastName);
     }
 
@@ -103,7 +107,13 @@ public class Create {
 	}
 
 	@After
-	public void teardown() {
-        this.framework.closeDriver();
+	public void teardown() throws Exception {
+
+        // Remove created user as part of clean up
+    	// this.homePage.clickNameFromList(this.firstName, this.lastName);
+    	// this.homePage.clickDeleteButton();
+    	// this.homePage.acceptDeleteAlert();
+
+//        this.quitDriver();
 	}
 }

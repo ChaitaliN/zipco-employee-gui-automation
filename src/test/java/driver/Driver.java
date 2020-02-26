@@ -1,21 +1,22 @@
 package driver;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
-public class Framework {
+public class Driver {
 
     final private String propFileName = "test.config.properties";
     private String chromeBrowser = "chrome";
 	private Properties prop;
-	private DriverInterface driver;
+	private static WebDriver driver;
 
-    public Framework() {
+    public Driver() {
 
         // NOTE: Throwing exception from constructors
         // isn't a good practice
@@ -28,30 +29,36 @@ public class Framework {
 
         // Get driver
         if (this.prop.getProperty("browser").toLowerCase().equals(chromeBrowser)) {
-            this.driver = new ChromeDriverShim(
+		    System.setProperty("webdriver.chrome.driver",
                     this.prop.getProperty("chromedriver.location"));
+            this.driver = new ChromeDriver();
         } else {
-            this.driver = new FirefoxDriverShim(
+            System.setProperty("webdriver.gecko.driver",
                     this.prop.getProperty("firefoxdriver.location"));
+            this.driver = new FirefoxDriver();
         }
 
-        // Configure driver
-        this.driver.configure(this.prop.getProperty("url"));
     }
 
-    public DriverInterface getDriver() {
+	public void navigateToUrl() {
+		this.driver.manage().window().maximize();
+		this.driver.get(this.prop.getProperty("url"));
+		this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	}
+
+    public void quitDriver() {
+        this.driver.quit();
+    }
+
+    public WebDriver getDriver() {
         return this.driver;
-    }
-
-    public void closeDriver() {
-        this.driver.close();
     }
 
     public Properties getProperties() {
         return this.prop;
     }
 
-    public void loadProperties() throws Exception {
+    private void loadProperties() throws Exception {
 
         this.prop = new Properties();
         InputStream inputStream;

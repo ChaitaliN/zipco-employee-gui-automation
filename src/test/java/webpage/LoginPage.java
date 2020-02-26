@@ -1,14 +1,14 @@
 package webpage;
 
-import driver.DriverInterface;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage extends BaseWebPage {
+public class LoginPage {
 
-	public LoginPage(DriverInterface driver) {
-		PageFactory.initElements(driver.get(), this);
+	public LoginPage(WebDriver driver) {
+		PageFactory.initElements(driver, this);
 	}
 
 	@FindBy(id="login-form")

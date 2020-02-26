@@ -20,12 +20,12 @@ Feature: Create Employee
 		Examples:
 		|firstName     |lastName     |startDate |email        |
 		|testFirstName1|testLastName1|2020-03-03|test@test.com|
-		|testFirstName2|testLastName2|2020-04-04|test@test.com|
+		# |testFirstName2|testLastName2|2020-04-04|test@test.com|
 
     # @create-employee-negative
 	# Scenario Outline: Create employee with negative test case
     #
-	# 	Given I am logged in as Luke
+	# 	Given I am logged in as Luke to create new employee
 	# 	And I am on the landing page
 	# 	When I click the Create button
 	# 	And I enter employee firstname "<firstName>"
@@ -44,7 +44,7 @@ Feature: Create Employee
     # @create-employee-cancel
 	# Scenario: Cancel employee creation
     #
-	# 	Given I am logged in as Luke
+	# 	Given I am logged in as Luke to create new employee
 	# 	And I am on the landing page
 	# 	When I click the Create button
 	# 	And I click on Cancel button

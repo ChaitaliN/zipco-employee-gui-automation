@@ -26,31 +26,36 @@ public class Driver {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
-        // Get driver
+    public void start() {
+
+        System.out.println("in driver");
         if (this.prop.getProperty("browser").toLowerCase().equals(chromeBrowser)) {
 		    System.setProperty("webdriver.chrome.driver",
                     this.prop.getProperty("chromedriver.location"));
             this.driver = new ChromeDriver();
+            System.out.println("start chrome");
         } else {
             System.setProperty("webdriver.gecko.driver",
                     this.prop.getProperty("firefoxdriver.location"));
             this.driver = new FirefoxDriver();
+            System.out.println("start firefox");
         }
-
     }
 
 	public void navigateToUrl() {
+        this.start();
 		this.driver.manage().window().maximize();
 		this.driver.get(this.prop.getProperty("url"));
 		this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 
-    public void quitDriver() {
+    public void quit() {
         this.driver.quit();
     }
 
-    public WebDriver getDriver() {
+    public WebDriver get() {
         return this.driver;
     }
 

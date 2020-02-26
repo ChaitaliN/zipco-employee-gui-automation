@@ -11,23 +11,26 @@ import webpage.CreatePage;
 import webpage.HomePage;
 import webpage.LoginPage;
 
-public class Create extends Driver {
+public class Create {
 
     String adminUsername = "Luke";
     String adminPassword = "Skywalker";
     String firstName;
     String lastName;
 
+    public Driver driver;
     public LoginPage loginPage;
     public HomePage homePage;
     public CreatePage createPage;
 
     @Before()
     public void setup() {
-        this.navigateToUrl();
-        this.loginPage = new LoginPage(this.getDriver());
-        this.homePage = new HomePage(this.getDriver());
-        this.createPage = new CreatePage(this.getDriver());
+        this.driver = new Driver();
+        this.driver.navigateToUrl();
+
+        this.loginPage = new LoginPage(this.driver.get());
+        this.homePage = new HomePage(this.driver.get());
+        this.createPage = new CreatePage(this.driver.get());
     }
 
 	@Given("^I am logged in as Luke to create new employee$")
@@ -88,6 +91,7 @@ public class Create extends Driver {
 	    this.createPage.assertLastName(lastName);
 	    this.createPage.assertStartDate(startDate);
 	    this.createPage.assertEmail(email);
+        this.homePage.clickBackButton();
     }
 
 	@Then("^I fail to create new employee$")
@@ -106,14 +110,15 @@ public class Create extends Driver {
 	    this.homePage.employeeListDisplay();
 	}
 
-	@After
+	@After(order=2, value="@create-employee-positive")
+	public void teardownEmployee() throws Exception {
+    	this.homePage.clickNameFromList(this.firstName, this.lastName);
+    	this.homePage.clickDeleteButton();
+    	this.homePage.acceptDeleteAlert();
+	}
+
+	@After(order=1)
 	public void teardown() throws Exception {
-
-        // Remove created user as part of clean up
-    	// this.homePage.clickNameFromList(this.firstName, this.lastName);
-    	// this.homePage.clickDeleteButton();
-    	// this.homePage.acceptDeleteAlert();
-
-//        this.quitDriver();
+        this.driver.quit();
 	}
 }

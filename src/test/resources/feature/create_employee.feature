@@ -20,7 +20,6 @@ Feature: Create Employee
 		Examples:
 		|firstName     |lastName     |startDate |email        |
 		|testFirstName1|testLastName1|2020-03-03|test@test.com|
-		|testFirstName2|testLastName2|2020-04-04|test@test.com|
 
     @create-employee-negative
 	Scenario Outline: Create employee with negative test case
@@ -37,9 +36,7 @@ Feature: Create Employee
 
 		Examples:
 		|firstName       |lastName              |startDate     |email         |
-		|testFirstName   |testLastName          |2020-29       |test@test.com |
 		|                |testLastName          |2020-03-03    |test@test.com |
-		|testFirstName   |                      |2020-04-04    |test@test.com |
 
     @create-employee-cancel
 	Scenario: Cancel employee creation

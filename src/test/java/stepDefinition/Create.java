@@ -107,7 +107,7 @@ public class Create implements StepDefinition {
 	    this.createPage.assertLastName(lastName);
 	    this.createPage.assertStartDate(startDate);
 	    this.createPage.assertEmail(email);
-        this.createPage.clickBackButton();
+        this.homePage.clickBackButton();
     }
 
 	@Then("^I fail to create new employee$")

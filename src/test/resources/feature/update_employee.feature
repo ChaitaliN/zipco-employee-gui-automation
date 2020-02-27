@@ -20,4 +20,22 @@ Feature: Update Employee
 
 		Examples:
         |existingFirstName |existingLastName |firstName      |lastName      |startDate  |email              |
-		|testOldFirstName1 |testOldLastName1 |testFirstName1 |testLastName1 |2020-09-09 |testupdate@test.com|
+		|testOldFirstName1 |testOldLastName1 |testFirstName1 |testLastName1 |2020-03-03 |test@test.com|
+
+    @update-employee-negative
+	Scenario Outline: Update employee with negative test case
+
+		Given user has logged in
+		And I check if employee with name "<existingFirstName>", "<existingLastName>" exists
+		When I select employee "<existingFirstName>", "<existingLastName>" from the list
+		And I click the edit button
+		And I change employee firstname to "<firstName>"
+		And I change employee lastname to "<lastName>"
+		And I change employee start date to "<startDate>"
+		And I change employee email to "<email>"
+		And I update employee details
+		Then I should be unable to update employee
+
+		Examples:
+        |existingFirstName |existingLastName |firstName      |lastName      |startDate  |email              |
+		|testOldFirstName1 |testOldLastName1 |               |testLastName1 |2020-03-03 |test@test.com|

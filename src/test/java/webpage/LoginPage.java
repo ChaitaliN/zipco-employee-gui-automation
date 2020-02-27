@@ -4,11 +4,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import static org.junit.Assert.assertEquals;
 
 public class LoginPage {
 
+    public WebDriver driver;
+
 	public LoginPage(WebDriver driver) {
-		PageFactory.initElements(driver, this);
+        this.driver = driver;
+		PageFactory.initElements(this.driver, this);
 	}
 
 	@FindBy(id="login-form")
@@ -23,6 +27,8 @@ public class LoginPage {
 	@FindBy(xpath="//*[@id='login-form']/fieldset/button")
 	WebElement loginButton;
 
+	@FindBy(className="error-message")
+	WebElement errorMessage;
 
 	public void formDisplay() throws Throwable {
 		loginForm.isDisplayed();
@@ -42,4 +48,13 @@ public class LoginPage {
 	    loginButton.click();
 	}
 
+	public void assertTitle(String title) throws Throwable {
+	    String browserTitle = this.driver.getTitle();
+		assertEquals(title, browserTitle);
+	}
+
+	public void checkErrorMsg(String actual) throws Exception{
+		String expected = errorMessage.getText();
+		// assertEquals(actual, expected);
+	}
 }

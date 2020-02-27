@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
@@ -20,6 +21,9 @@ public class HomePage {
         this.driver = driver;
 		PageFactory.initElements(this.driver, this);
 	}
+
+	@FindBy(id="greetings")
+	WebElement greeting;
 
 	@FindBy(id="employee-list")
 	WebElement employeeList;
@@ -38,6 +42,15 @@ public class HomePage {
 
 	@FindBy(xpath="//*[@id='employee-list']/li")
 	List<WebElement> employeeNames;
+
+	@FindBy(xpath="//*[@class='header-container']/p[1]")
+	WebElement logoutButton;
+
+	public void checkGreetingMsg(String name) throws Throwable {
+	    String greetMsg = greeting.getText();
+	    assertEquals("Hello"+ " " + name, greetMsg);
+	    // Thread.sleep(3000);
+	}
 
 	public void employeeListDisplay() throws Exception{
 		// this.waitLoop(employeeList);
@@ -58,6 +71,10 @@ public class HomePage {
 
 	public void clickEditButton(){
 		editButton.click();
+	}
+
+	public void clickLogout(){
+		logoutButton.click();
 	}
 
 	public void doubleClickNameFromList(String firstName, String lastName) throws Exception {

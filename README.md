@@ -21,7 +21,7 @@ Cafe townsend UI automation testing
 - BDD tool - Cucumber
 - Test tool - JUnit
 - Build tool - Maven
-- [Configuration management - Properties file to change browser, driver location etc](./src/test/resources/test.config.properties)
+- Configuration management - [Properties file to change browser, driver location etc](./src/test/resources/test.config.properties)
 
 ## Usage
 

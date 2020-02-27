@@ -45,6 +45,12 @@ public class CreatePage {
 	@FindBy(xpath="//*[@class='formFooter']/p")
 	WebElement deleteButton;
 
+	@FindBy(xpath="//*[@class='formFooter']/button[1]")
+	WebElement updateButton;
+
+	@FindBy(className="bBack")
+	WebElement backEditButton;
+
 	public void enterFirstName(String firstName) throws Exception {
 		// wait.waitLoop(detailForm);
 		firstNameInput.clear();
@@ -72,6 +78,10 @@ public class CreatePage {
 
 	public void clickCancelButton(){
 		createCancelButton.click();
+	}
+
+	public void clickBackButton(){
+		backEditButton.click();
 	}
 
 	public void acceptAlert() {
@@ -119,5 +129,9 @@ public class CreatePage {
 
 	public void clickDeleteButton(){
 		deleteButton.click();
+	}
+
+	public void clickUpdateButton(){
+		updateButton.click();
 	}
 }

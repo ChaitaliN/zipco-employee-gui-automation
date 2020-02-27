@@ -25,6 +25,11 @@ public class Delete implements StepDefinition {
         this.driver = new Driver();
     }
 
+	@After(order=1)
+	public void teardown() throws Exception {
+        this.driver.quit();
+	}
+
     public void iniatialize() throws Throwable {
         this.driver.start();
         this.loginPage = new LoginPage(this.driver.get());
@@ -82,9 +87,4 @@ public class Delete implements StepDefinition {
     public void i_click_delete_on_edit_page() throws Throwable {
         this.createPage.clickDeleteButton();
     }
-
-	@After(order=1)
-	public void teardown() throws Exception {
-        this.driver.quit();
-	}
 }

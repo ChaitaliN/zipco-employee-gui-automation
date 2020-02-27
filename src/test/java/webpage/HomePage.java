@@ -85,6 +85,18 @@ public class HomePage {
 		}
 	}
 
+	public void selectNameFromList(String firstName, String lastName) throws Exception{
+		// wait.waitLoop(employeeList);
+		for (WebElement empName: employeeNames) {
+			String fullName = empName.getText();
+			if(fullName.equals(firstName+" "+lastName)){
+				empName.click();
+				// Thread.sleep(2000);
+				break;
+			}
+		}
+	}
+
 	public void acceptDeleteAlert() {
 		try {
 	        WebDriverWait wait = new WebDriverWait(this.driver, 2);

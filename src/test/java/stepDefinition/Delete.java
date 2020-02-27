@@ -10,7 +10,7 @@ import webpage.CreatePage;
 import webpage.HomePage;
 import webpage.LoginPage;
 
-public class Delete {
+public class Delete implements StepDefinition {
 
     String adminUsername = "Luke";
     String adminPassword = "Skywalker";
@@ -20,11 +20,13 @@ public class Delete {
     public HomePage homePage;
     public CreatePage createPage;
 
-    @Before()
+    @Before(order=1)
     public void setup() {
         this.driver = new Driver();
-        this.driver.navigateToUrl();
+    }
 
+    public void iniatialize() throws Throwable {
+        this.driver.start();
         this.loginPage = new LoginPage(this.driver.get());
         this.homePage = new HomePage(this.driver.get());
         this.createPage = new CreatePage(this.driver.get());
@@ -32,6 +34,9 @@ public class Delete {
 
 	@Given("^I am logged in as Luke to delete employee$")
 	public void i_am_logged_in_as_luke_to_delete_employee() throws Throwable {
+
+        this.iniatialize();
+        this.driver.navigateToHomePage();
         this.loginPage.formDisplay();
         this.loginPage.enterUsername(this.adminUsername);
         this.loginPage.enterPassword(this.adminPassword);

@@ -1,6 +1,5 @@
 package stepDefinition;
 
-import cucumber.api.Scenario;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.Before;
 import cucumber.api.java.After;
@@ -11,7 +10,7 @@ import webpage.CreatePage;
 import webpage.HomePage;
 import webpage.LoginPage;
 
-public class Create {
+public class Create implements StepDefinition {
 
     String adminUsername = "Luke";
     String adminPassword = "Skywalker";
@@ -23,11 +22,13 @@ public class Create {
     public HomePage homePage;
     public CreatePage createPage;
 
-    @Before()
+    @Before(order=1)
     public void setup() {
         this.driver = new Driver();
-        this.driver.navigateToUrl();
+    }
 
+    public void iniatialize() throws Throwable {
+        this.driver.start();
         this.loginPage = new LoginPage(this.driver.get());
         this.homePage = new HomePage(this.driver.get());
         this.createPage = new CreatePage(this.driver.get());
@@ -35,6 +36,9 @@ public class Create {
 
 	@Given("^I am logged in as Luke to create new employee$")
 	public void i_am_logged_in_as_luke_to_create_new_employee() throws Throwable {
+
+        this.iniatialize();
+        this.driver.navigateToHomePage();
         this.loginPage.formDisplay();
         this.loginPage.enterUsername(this.adminUsername);
         this.loginPage.enterPassword(this.adminPassword);

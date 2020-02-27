@@ -44,8 +44,7 @@ public class Driver {
         }
     }
 
-	public void navigateToUrl() {
-        this.start();
+	public void navigateToHomePage() {
 		this.driver.manage().window().maximize();
 		this.driver.get(this.prop.getProperty("url"));
 		this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);

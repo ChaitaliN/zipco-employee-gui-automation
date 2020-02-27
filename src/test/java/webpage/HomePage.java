@@ -33,6 +33,9 @@ public class HomePage {
 	@FindBy(className="bBack")
 	WebElement editBackButton;
 
+	@FindBy(id="bEdit")
+	WebElement editButton;
+
 	@FindBy(xpath="//*[@id='employee-list']/li")
 	List<WebElement> employeeNames;
 
@@ -47,6 +50,14 @@ public class HomePage {
 
 	public void clickBackButton(){
 		editBackButton.click();
+	}
+
+	public void clickDeleteButton() {
+		deleteButton.click();
+	}
+
+	public void clickEditButton(){
+		editButton.click();
 	}
 
 	public void doubleClickNameFromList(String firstName, String lastName) throws Exception {
@@ -72,10 +83,6 @@ public class HomePage {
 				break;
 			}
 		}
-	}
-
-	public void clickDeleteButton() {
-		deleteButton.click();
 	}
 
 	public void acceptDeleteAlert() {

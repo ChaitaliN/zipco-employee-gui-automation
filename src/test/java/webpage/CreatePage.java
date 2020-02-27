@@ -42,6 +42,9 @@ public class CreatePage {
 	@FindBy(className="bCancel")
 	WebElement createCancelButton;
 
+	@FindBy(xpath="//*[@class='formFooter']/p")
+	WebElement deleteButton;
+
 	public void enterFirstName(String firstName) throws Exception {
 		// wait.waitLoop(detailForm);
 		firstNameInput.clear();
@@ -112,5 +115,9 @@ public class CreatePage {
 	public void checkAddBtnDisable() {
 		String addBtnStatus = createAddButton.getAttribute("ng-disabled");
 		assertEquals("true", addBtnStatus);
+	}
+
+	public void clickDeleteButton(){
+		deleteButton.click();
 	}
 }

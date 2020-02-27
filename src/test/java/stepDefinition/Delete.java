@@ -43,23 +43,22 @@ public class Delete implements StepDefinition {
         this.loginPage.clickLogin();
 	}
 
-    @Given("^I select name \"([^\"]*)\", \"([^\"]*)\" from employee list$")
-        public void i_select_name_from_employee_list(String firstName, String lastName) throws Throwable {
-
-        // Create new employee as part of setup
-        // TODO: Figure out how to move this bit in setup
+    @Given("^I check employee with name \"(.*?)\", \"(.*?)\" exists$")
+    public void employee_with_name_exists(String firstName, String lastName) throws Throwable {
         this.homePage.clickCreateButton();
         this.createPage.enterFirstName(firstName);
         this.createPage.enterLastName(lastName);
         this.createPage.enterStartDate("2020-03-03");
         this.createPage.enterEmail("test@test.com");
         this.createPage.clickAddButton();
+    }
 
-        // Select newly created employee
+    @Given("^I select name \"([^\"]*)\", \"([^\"]*)\" from employee list$")
+        public void i_select_name_from_employee_list(String firstName, String lastName) throws Throwable {
     	this.homePage.clickNameFromList(firstName, lastName);
     }
 
-    @When("^I click Delete on home page$")
+    @When("^I click delete on home page$")
     public void i_click_delete_on_home_page() throws Throwable {
     	this.homePage.clickDeleteButton();
     }
@@ -72,6 +71,16 @@ public class Delete implements StepDefinition {
     @Then("^I should not see employee with name \"(.*?)\", \"(.*?)\" in the list$")
     public void i_should_not_see_employee_with_name_in_list(String firstName, String lastName) throws Throwable {
         this.homePage.assertNameNotExist(firstName, lastName);
+    }
+
+    @When("^I click on edit employee$")
+    public void i_click_on_edit_employee() throws Throwable {
+        this.homePage.clickEditButton();
+    }
+
+    @When("^I click delete on edit page$")
+    public void i_click_delete_on_edit_page() throws Throwable {
+        this.createPage.clickDeleteButton();
     }
 
 	@After(order=1)

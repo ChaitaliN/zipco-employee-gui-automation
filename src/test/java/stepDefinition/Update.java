@@ -124,6 +124,7 @@ public class Update implements StepDefinition {
 
     @When("^I should be unable to update employee$")
     public void i_should_be_unable_to_update_employee() throws Throwable {
+	    this.createPage.clickBackButton();
 	    this.homePage.employeeListDisplay();
     }
 }

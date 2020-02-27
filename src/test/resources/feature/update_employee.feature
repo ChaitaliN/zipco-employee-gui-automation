@@ -25,7 +25,7 @@ Feature: Update Employee
     @update-employee-negative
 	Scenario Outline: Update employee with negative test case
 
-		Given user has logged in
+ 		Given I am logged in as Luke to update employee
 		And I check if employee with name "<existingFirstName>", "<existingLastName>" exists
 		When I select employee "<existingFirstName>", "<existingLastName>" from the list
 		And I click the edit button

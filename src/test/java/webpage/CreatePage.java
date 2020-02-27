@@ -52,7 +52,6 @@ public class CreatePage {
 	WebElement backEditButton;
 
 	public void enterFirstName(String firstName) throws Exception {
-		// wait.waitLoop(detailForm);
 		firstNameInput.clear();
 		firstNameInput.sendKeys(firstName);
 	}

@@ -49,11 +49,9 @@ public class HomePage {
 	public void checkGreetingMsg(String name) throws Throwable {
 	    String greetMsg = greeting.getText();
 	    assertEquals("Hello"+ " " + name, greetMsg);
-	    // Thread.sleep(3000);
 	}
 
 	public void employeeListDisplay() throws Exception{
-		// this.waitLoop(employeeList);
 		employeeList.isDisplayed();
 	}
 
@@ -78,37 +76,31 @@ public class HomePage {
 	}
 
 	public void doubleClickNameFromList(String firstName, String lastName) throws Exception {
-		// this.waitLoop(employeeList);
 		Actions action = new Actions(this.driver);
 		for (WebElement empName: employeeNames) {
 			String fullName = empName.getText();
 			if (fullName.equals(firstName+" "+lastName)) {
 				action.doubleClick(empName).perform();
-				// Thread.sleep(1000);
 				break;
 			}
 		}
 	}
 
 	public void clickNameFromList(String firstName, String lastName) throws Exception {
-		// this.waitLoop(employeeList);
 		for (WebElement empName: employeeNames) {
 			String fullName = empName.getText();
 			if(fullName.equals(firstName+" "+lastName)) {
 				empName.click();
-				// Thread.sleep(2000);
 				break;
 			}
 		}
 	}
 
 	public void selectNameFromList(String firstName, String lastName) throws Exception{
-		// wait.waitLoop(employeeList);
 		for (WebElement empName: employeeNames) {
 			String fullName = empName.getText();
 			if(fullName.equals(firstName+" "+lastName)){
 				empName.click();
-				// Thread.sleep(2000);
 				break;
 			}
 		}
@@ -127,7 +119,6 @@ public class HomePage {
 
     // Validation methods
 	public void assertNameNotExist(String firstName, String lastName) throws Exception{
-		// this.waitLoop(employeeList);
 		for (WebElement empName: employeeNames) {
 			String fullName = empName.getText();
 			assertTrue(fullName != (firstName+" "+lastName));

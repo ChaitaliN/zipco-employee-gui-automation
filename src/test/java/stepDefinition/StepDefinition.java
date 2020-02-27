@@ -1,5 +1,5 @@
 package stepDefinition;
 
 public interface StepDefinition {
-    public void iniatialize() throws Throwable;
+    public void initialize() throws Throwable;
 }

@@ -30,7 +30,7 @@ public class Login implements StepDefinition {
         this.driver.quit();
 	}
 
-    public void iniatialize() throws Throwable {
+    public void initialize() throws Throwable {
         this.driver.start();
         this.loginPage = new LoginPage(this.driver.get());
         this.homePage = new HomePage(this.driver.get());
@@ -39,7 +39,7 @@ public class Login implements StepDefinition {
 
     @Given("^I am on login page with title \"([^\"]*)\"$")
     public void i_am_on_login_page_with_title(String title) throws Throwable {
-        this.iniatialize();
+        this.initialize();
         this.driver.navigateToHomePage();
         this.loginPage.assertTitle(title);
     }

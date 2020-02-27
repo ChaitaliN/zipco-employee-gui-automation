@@ -29,7 +29,7 @@ public class Logout implements StepDefinition {
         this.driver.quit();
 	}
 
-    public void iniatialize() throws Throwable {
+    public void initialize() throws Throwable {
         this.driver.start();
         this.loginPage = new LoginPage(this.driver.get());
         this.homePage = new HomePage(this.driver.get());
@@ -38,7 +38,7 @@ public class Logout implements StepDefinition {
     @Given("^I am logged in as Luke to logout back$")
     public void i_am_logged_in_as_Luke_to_logout_back() throws Throwable {
 
-        this.iniatialize();
+        this.initialize();
         this.driver.navigateToHomePage();
         this.loginPage.formDisplay();
         this.loginPage.enterUsername(this.adminUsername);

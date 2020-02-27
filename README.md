@@ -8,7 +8,7 @@ Cafe townsend UI automation testing
 - Maven 3.6
 - Chrome 80
 - Firefox 73
-- NOTE: Chrome / Firefox drivers are bundled as part of framework
+- NOTE: [Chrome / Firefox drivers are bundled as part of framework](./bin)
 
 ## Framework
 
@@ -25,7 +25,7 @@ Cafe townsend UI automation testing
 
 ## Usage
 
-- Run all tests
+- Run all scenarios
 
   ```sh
   mvn test
@@ -57,7 +57,7 @@ Cafe townsend UI automation testing
   target/cucumber.json
   ```
 
-- Steps report
+- Scenario report
 
   ```sh
   target/cucumber-pretty.txt

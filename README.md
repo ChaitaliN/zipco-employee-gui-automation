@@ -25,6 +25,14 @@ Cafe townsend UI automation testing
 
 ## Usage
 
+- **NOTE:** [Change browser driver location in properties file based on your operating system.](./src/test/resources/test.config.properties)
+
+  ```sh
+  MacOS (default) - ./bin/darwin/chromedriver
+  Windows - ./bin/windows/chromedriver
+  Linux - ./bin/linux/chromedriver
+  ```
+
 - Run all scenarios
 
   ```sh

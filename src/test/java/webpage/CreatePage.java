@@ -99,25 +99,25 @@ public class CreatePage {
     // Validation methods
 	public void assertFirstName(String firstName){
 		js = (JavascriptExecutor) this.driver;
-		String actualFirstName = js.executeScript("return document.getElementsByTagName('input')[0].value").toString();
+		String actualFirstName = js.executeScript("return document.querySelectorAll('input')[0].value").toString();
 		assertEquals(firstName, actualFirstName);
 	}
 
 	public void assertLastName(String lastName){
 		js = (JavascriptExecutor) this.driver;
-		String actualLastName = js.executeScript("return document.getElementsByTagName('input')[1].value").toString();
+		String actualLastName = js.executeScript("return document.querySelectorAll('input')[1].value").toString();
 		assertEquals(lastName, actualLastName);
 	}
 
 	public void assertStartDate(String startDate){
 		js = (JavascriptExecutor) this.driver;
-		String actualDate = js.executeScript("return document.getElementsByTagName('input')[2].value").toString();
+		String actualDate = js.executeScript("return document.querySelectorAll('input')[2].value").toString();
 		assertEquals(startDate, actualDate);
 	}
 
 	public void assertEmail(String email){
 		js = (JavascriptExecutor) this.driver;
-		String actualEmail = js.executeScript("return document.getElementsByTagName('input')[3].value").toString();
+		String actualEmail = js.executeScript("return document.querySelectorAll('input')[3].value").toString();
 		assertEquals(email, actualEmail);
 	}
 

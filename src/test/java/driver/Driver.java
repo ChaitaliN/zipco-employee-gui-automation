@@ -29,18 +29,14 @@ public class Driver {
     }
 
     public void start() {
-
-        System.out.println("in driver");
         if (this.prop.getProperty("browser").toLowerCase().equals(chromeBrowser)) {
 		    System.setProperty("webdriver.chrome.driver",
                     this.prop.getProperty("chromedriver.location"));
             this.driver = new ChromeDriver();
-            System.out.println("start chrome");
         } else {
             System.setProperty("webdriver.gecko.driver",
                     this.prop.getProperty("firefoxdriver.location"));
             this.driver = new FirefoxDriver();
-            System.out.println("start firefox");
         }
     }
 

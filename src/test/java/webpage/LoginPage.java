@@ -21,13 +21,13 @@ public class LoginPage {
 	@FindBy(id="login-form")
     WebElement loginForm;
 
-	@FindBy(xpath="//*[@id='login-form']/fieldset/label[1]/input")
+	@FindBy(xpath="//input[@ng-model='user.name']")
 	WebElement username;
 
-	@FindBy(xpath="//*[@id='login-form']/fieldset/label[2]/input")
+	@FindBy(xpath="//input[@ng-model='user.password']")
 	WebElement password;
 
-	@FindBy(xpath="//*[@id='login-form']/fieldset/button")
+	@FindBy(xpath="//button[text()='Login']")
 	WebElement loginButton;
 
 	@FindBy(className="error-message")

@@ -24,19 +24,19 @@ public class CreatePage {
 	@FindBy(name="employeeForm")
 	WebElement detailForm;
 
-	@FindBy(xpath="//form[@name='employeeForm']/fieldset/label[1]/input")
+	@FindBy(xpath="//input[@ng-model='selectedEmployee.firstName']")
 	WebElement firstNameInput;
 
-	@FindBy(xpath="//form[@name='employeeForm']/fieldset/label[2]/input")
+	@FindBy(xpath="//input[@ng-model='selectedEmployee.lastName']")
 	WebElement lastNameInput;
 
-	@FindBy(xpath="//form[@name='employeeForm']/fieldset/label[3]/input")
+	@FindBy(xpath="//input[@ng-model='selectedEmployee.startDate']")
 	WebElement startDateInput;
 
-	@FindBy(xpath="//form[@name='employeeForm']/fieldset/label[4]/input")
+	@FindBy(xpath="//input[@ng-model='selectedEmployee.email']")
 	WebElement emailInput;
 
-	@FindBy(xpath="//*[@class='formFooter']/button[2]")
+	@FindBy(xpath="//button[@class='main-button']")
 	WebElement createAddButton;
 
 	@FindBy(className="bCancel")

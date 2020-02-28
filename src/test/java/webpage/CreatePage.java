@@ -85,7 +85,7 @@ public class CreatePage {
 
 	public void acceptAlert() {
 		try {
-	        WebDriverWait wait = new WebDriverWait(this.driver, 2);
+	        WebDriverWait wait = new WebDriverWait(this.driver, 5);
 	        if(wait.until(ExpectedConditions.alertIsPresent()) != null) {
 		        wait.until(ExpectedConditions.alertIsPresent());
 		        Alert alert = this.driver.switchTo().alert();

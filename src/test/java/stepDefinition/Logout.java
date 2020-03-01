@@ -6,7 +6,6 @@ import cucumber.api.java.en.When;
 import cucumber.api.java.Before;
 import cucumber.api.java.After;
 import driver.Driver;
-import webpage.CreatePage;
 import webpage.HomePage;
 import webpage.LoginPage;
 
